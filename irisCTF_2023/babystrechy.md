@@ -8,7 +8,7 @@ Although this is a web challenge, the script is ran directly with PHP because it
 **Challenge code**
 
 We were given the following code.
-```
+```php
 <?php
 $password = exec("openssl rand -hex 64");
 
@@ -41,7 +41,7 @@ Which can look like the following.
 
 The string runs through a loop in the next section which stretches our password to a 4096 byte long string.
 Each character is concatenated 64 times in a row.
-```
+```php
 $stretched_password = "";
 for($a = 0; $a < strlen($password); $a++) {
     for($b = 0; $b < 64; $b++)
@@ -76,7 +76,7 @@ Our super strong stretched password will be truncated and based on our demonstra
 
 I used python to output a list of all 256 possible passwords.
 
-```
+```python
 hexarray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
 out = ""
 for i in hexarray:

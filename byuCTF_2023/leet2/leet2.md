@@ -34,7 +34,7 @@ So the trick with our built-in function from before doesn't work here anymore an
 
 ## Solution
 
-So I played around locally with a python interpreter and thought about how we can get the value `1337.
+So I played around locally with a python interpreter and thought about how we can get the value `1337` .
 
 The following showed me that we can calculate with the value `True` and use it.
 

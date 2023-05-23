@@ -1,4 +1,4 @@
-# byuCTF 2023 - leet1 (Jail)
+# byuCTF 2023 - Leet 1 (Jail)
 
 Here we had a pyJail task to solve.
 

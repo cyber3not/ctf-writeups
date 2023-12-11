@@ -1,4 +1,4 @@
-# HackTheBox - PC
+# HackTheBox - Pilgrimage
 
 I started with a port scan.
 

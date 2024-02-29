@@ -1,4 +1,4 @@
-# Web - CachedWeb
+# Web - baby CachedView
 
 ## Description
 > I made a service for people to cache their favourite websites, come and check it out!

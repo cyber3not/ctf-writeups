@@ -390,9 +390,11 @@ __Flag:__
 
 A really very cool web challenge as I would like to say again afterwards and for the future I would like to leave a few links and external resources here that helped me and maybe will help again in the future when I have to deal with it again.
 
+<br>
+
 __Used Turbo Script:__
 
-
+[Used Turbo Script](./turbo_script.txt)
 
 __HackerOne Report & Payload__
 

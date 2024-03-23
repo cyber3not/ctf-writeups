@@ -11,6 +11,8 @@ When we run this we only get to see the following.
 
 ![Screenshot0](./screenshots/0.png)
 
+<br>
+
 ### Solution
 
 With the help of `strings` we can read the flag from the binary.

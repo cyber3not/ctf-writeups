@@ -9,7 +9,7 @@ In this case we were given a binary called `cutter`.
 
 If we run this binary, we only get the message "[X] Error: Box Not Found" to see.
 
-![Screenshot0](./screenshots/0.md)
+![Screenshot0](./screenshots/0.png)
 
 ### Solution
 
@@ -17,7 +17,7 @@ The solution here was to use `strace` to see which system calls the binary was m
 
 `strace ./cutter`
 
-![Screenshot1](./screenshots/1.md)
+![Screenshot1](./screenshots/1.png)
 
 The binary tries to open a file with the name of our flag.
 

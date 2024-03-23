@@ -23,13 +23,13 @@ For this Challenge, we were given a web instance and the code/docker.
 
 As always, I looked at the wesite first.
 
-![Screenshot0](./screenshots/0.md)
+![Screenshot0](./screenshots/0.png)
 
 I saw three menus and tried to interact with them somehow.
 
 At the first API endpoint `get_ticket` which probably generates a __JWT__ for us, I only ever saw the hint that we are not authorized (403).
 
-![Screenshot1](./screenshots/1.md)
+![Screenshot1](./screenshots/1.png)
 
 And for the other two menus, a __JWT__ would be necessary.
 
@@ -37,7 +37,7 @@ So I took a closer look at the challenge code to see if there might be other API
 
 A look at the `requirements.txt` file was interesting.
 
-![Screenshot2](./screenshots/2.md)
+![Screenshot2](./screenshots/2.png)
 
 I searched for vulnerabilities to `python_jwt==3.3.3` and quickly found what I was looking for: [github.com](https://github.com/advisories/GHSA-5p8v-58qm-c7fp)
 
@@ -56,30 +56,30 @@ So I had a look how exactly this endnode is blocked.
 
 I found what I was looking for in the `haproxy.cfg` file.
 
-![Screenshot3](./screenshots/3.md)
+![Screenshot3](./screenshots/3.png)
 
 I deleted this line and let docker and the application run locally for testing.
 
 And yes, now I got a __JWT__ from the application with which I could now continue testing.
 
-![Screenshot4](./screenshots/4.md)
+![Screenshot4](./screenshots/4.png)
 
 For example, you could now also use the __JWT__ to display chats from the application.
 
-![Screenshot5](./screenshots/5.md)
+![Screenshot5](./screenshots/5.png)
 
 But now to the exploitation.
 
 I passed our token to the [POC](https://github.com/user0x1337/CVE-2022-39227) and set `administrator` as parameter `-i`, because the flag endnode requires this as we can see in the source code in the file `routes.py`.
 
-![Screenshot6](./screenshots/6.md)
+![Screenshot6](./screenshots/6.png)
 
 
-![Screenshot7](./screenshots/7.md)
+![Screenshot7](./screenshots/7.png)
 
 This token then had to be inserted as a whole with the brackets `{}` as `Authorization:` header field and I saw the local fake flag already!
 
-![Screenshot8](./screenshots/8.md)
+![Screenshot8](./screenshots/8.png)
 
 <br>
 <br>
@@ -98,7 +98,7 @@ This article was helpful: [haproxy.com](https://www.haproxy.com/blog/august-2023
 
 A simple appending of a `#` sign gave me a JWT.
 
-![Screenshot9](./screenshots/9.md)
+![Screenshot9](./screenshots/9.png)
 
 <br>
 <br>
@@ -107,6 +107,6 @@ A simple appending of a `#` sign gave me a JWT.
 
 Now I practiced these steps on the online instance one after the other and I got the flag.
 
-![Screenshot10](./screenshots/10.md)
+![Screenshot10](./screenshots/10.png)
 
 

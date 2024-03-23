@@ -100,6 +100,8 @@ A simple appending of a `#` sign gave me a JWT.
 
 ![Screenshot9](./screenshots/9.png)
 
+![Screenshot10](./screenshots/10.png)
+
 <br>
 <br>
 
@@ -107,6 +109,6 @@ A simple appending of a `#` sign gave me a JWT.
 
 Now I practiced these steps on the online instance one after the other and I got the flag.
 
-![Screenshot10](./screenshots/10.png)
+![Screenshot10](./screenshots/11.png)
 
 

@@ -3,6 +3,9 @@
 ## Description
 > Are you ready to unravel the mysteries and expose the truth hidden within KROP's digital domain? Join the challenge and prove your prowess in the world of cybersecurity. Remember, time is money, but in this case, the rewards may be far greater than you imagine.
 
+<br>
+<br>
+
 ## Walkthrough
 
 In this challenge we were given a web instance and the source code.
@@ -34,6 +37,9 @@ __File:__ `TimeController.php`
 __File:__ `TimeModel.php`
 
 ![Screenshot4](./screenshots/4.png)
+
+<br>
+<br>
 
 ### Solution
 

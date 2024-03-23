@@ -6,6 +6,31 @@
 <br>
 <br>
 
+- [Forensics](#Forensics)
+  - [It Has Begun](#It-Has-Begun)
+  - [An unusual sighting](#An-unusual-sighting)
+  - [Urgent](#Urgent)
+  - [Phreaky](#Phreaky)
+  - [Persue The Tracks](#Persue-The-Tracks)
+  - [Fake Boost](#Fake-Boost)
+- [Web](#Web)
+  - [Flag Command](#Flag-Command)
+  - [TimeKORP](#TimeKORP)
+  - [KORP Terminal](#KORP-Terminal)
+  - [Labyrinth Linguist](#Labyrinth-Linguist)
+  - [LockTalk](#LockTalk)
+- [Reversing](#Reversing)
+  - [LootStash](#LootStash)
+  - [BoxCutter](#BoxCutter)
+  - [PackedAway](#PackedAway)
+- [Misc](#Misc)
+  - [Character](#Character)
+  - [Unbreakable](#Unbreakable)
+ 
+<br>
+<br>
+<br>
+
 ## Forensics
 
 ### It Has Begun

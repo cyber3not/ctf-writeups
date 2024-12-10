@@ -14,7 +14,7 @@
 - [Foothold](#Foothold)
 	- [Credential Harvesting](#Credential-Harvesting)
 - [User](#User)
-	- [Password Reuse](#Password Reuse)
+	- [Password Reuse](#Password-Reuse)
 - [Privilege Escalation](#Privilege-Escalation)
 	- [SUID](#SUID)
 	- [CVE-2022-37706](#CVE---2022---37706)

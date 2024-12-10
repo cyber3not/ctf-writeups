@@ -1,4 +1,4 @@
-# HackTheBox - Usage
+# HackTheBox - Runner
 
  ![Info](./screenshots/Runner.png)
 

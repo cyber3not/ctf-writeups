@@ -9,9 +9,8 @@
 
 - [Enumeration](#Enumeration)
     - [Portscan](#Portscan)
-    - [Webserver](#Webserver)
-		    - [80](#80)
-		    - [3000](#3000)
+    - [Webserver 80](#Webserver-80)
+    - [Webserver 3000](#Webserver-3000)
 - [Foothold](#Foothold)
 - [User](#User)
 	- [Password Reuse](#Password-Reuse)
@@ -38,9 +37,7 @@ An SSH server on the standard port 22 and two web servers.
 
 <br>
 
-### Webserver
-
-#### 80
+### Webserver 80
 
 So I took a look at both web servers.
 
@@ -66,7 +63,7 @@ Since pluck doesn't even ask for a username in the login panel and we know that 
 
 <br>
 
-#### 3000
+### Webserver 3000
 
 On port 3000 we see a Gitea server.
 

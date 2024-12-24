@@ -4,4 +4,4 @@ This machine is still active, and its writeup cannot be published yet due to [Ha
 
 Stay tuned for the full writeup once the machine is retired!
 
-![Screenshot0](./screenshots/MonithorsThree.png)
+![Screenshot0](./screenshots/MonitorsThree.png)

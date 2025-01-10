@@ -53,13 +53,13 @@ Windows Firewall-Firewall.evtx:    MS Windows 10-11 Event Log, version  3.2, 15 
 
 __Answere:__ `27/03/2023 14:37:09`
 
-This was easy to find out by the eventID 4624 which indicates successful login attempts.
+This was easy to find out by the eventID `4624` which indicates successful login attempts.
 
 In total there were 4 successful login attempts from user `cyberjunkie`.
 
 __Command:__ `chainsaw search -t 'Event.System.EventID: =4624'`
 
-[!Screenshot1](./screenshots/1.png)
+![Screenshot1](./screenshots/1.png)
 
 <br>
 
@@ -70,7 +70,7 @@ __Answere:__ `Metasploit C2 Bypass`
 
 The attacker worked with the well-known Metasploit framework.
 
-[!Screenshot2](./screenshots/2.png)
+![Screenshot2](./screenshots/2.png)
 
 <br>
 
@@ -90,7 +90,7 @@ Here helped a search with the matching event id, which is the ID 4719.
 
 __Command:__ `chainsaw search -t 'Event.System.EventID: =4719'`
 
-[!Screenshot4](./screenshots/4.png)
+![Screenshot4](./screenshots/4.png)
 
 <br>
 
@@ -103,7 +103,7 @@ The EventID 4698, which is created when sheduled tasks are created, helped us he
 
 __Command:__ `chainsaw search -t 'Event.System.EventID: =4698'`
 
-[!Screenshot5](./screenshots/5.png)
+![Screenshot5](./screenshots/5.png)
 
 <br>
 
@@ -128,11 +128,11 @@ __Answere:__ `-A cyberjunkie@hackthebox.eu`
 
 __Answere:__ `Sharphound`
 
-[!Screenshot8](./screenshots/8.png)
+![Screenshot8](./screenshots/8.png)
 
 It took me a while to find the attacker's tool I was looking for and I went through various Defender-related EventIDs.
 
-Through the EventID [1116](#https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus#event-id-1116) I found the tool of the attacker I was using.
+Through the EventID [1116](#https://learn.microsoft.com/en-us/defender-endpoint/troubleshoot-microsoft-defender-antivirus#event-id-1116) I found the tool of the attacker was using.
 
 __Command:__ `chainsaw search -t 'Event.System.EventID: =1116'`
 
@@ -145,7 +145,7 @@ __Answere:__ `C:\Users\CyberJunkie\Downloads\SharpHound-v1.1.0.zip`
 
 This was contained in the same output from the previous command also.
 
-[!Screenshot9](./screenshots/9.png)
+![Screenshot9](./screenshots/9.png)
 
 <br>
 
@@ -161,7 +161,7 @@ __Answere:__ `Quarantine`
 
 __Answere:__ `Get-FileHash -Algorithm md5 .\Desktop\Automation-HTB.ps1`
 
-[!Screenshot11](./screenshots/11.png)
+![Screenshot11](./screenshots/11.png)
 
 <br>
 
@@ -182,11 +182,11 @@ Here is also a [Resource ](https://attack.mitre.org/techniques/T1070/001/) from 
 
 __Command:__ `./chainsaw search -t 'Event.System.EventID: =104' Event-Logs/* --json | jq`
 
-[!Screenshot12](./screenshots/12.png)
+![Screenshot12](./screenshots/12.png)
 
 Here a detection by Sigma rules through the EventID `1104` that the attacker had deleted eventfiles:
 
-[!Screenshot12](./screenshots/12_2.png)
+![Screenshot12](./screenshots/12_2.png)
 
 <br>
 <br>
@@ -199,6 +199,6 @@ I also learned a lot about important EventID's to keep an eye on when looking fo
 
 I mainly used the tool [chainsaw](https://github.com/WithSecureLabs/chainsaw) and its search options via Strigns or various EventIDs.
 
-But for the last two questions I sat a bit longer on it  and  I experimented a bit with Sigma rules for the first time.
+For the last two questions I sat a bit longer on it  and  I experimented a bit with Sigma rules for the first time.
 
-[!Screenshot13](./screenshots/13.png)
+![Screenshot13](./screenshots/13.png)

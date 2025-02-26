@@ -16,7 +16,7 @@
 	- [Credentiailed Enumeration](#Credentiailed-Enumeration)
 	- [Password in Description](#Password-in-Description)
 	- [SMB-Share DEV](#SMB---Share-DEV)
-- [User]
+- [User](#User)
 	- [Hardcoded Credentials](#Hardcoded-Credentials)
 - [Privilege Escalation](#Privilege-Escalation)
 	- [SeBackupPrivileges](#SeBackupPrivileges)
